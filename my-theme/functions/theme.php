@@ -85,10 +85,13 @@ function custom_posts_pagination()
 ################################################## 
 
 Display taxonomy term
-Usage example: the_taxonomy_term('news');
+
+Usage example: 
+the_taxonomy_term_name('your_taxonomy');
+get_specific_taxonomy_term_name('your_taxonomy', 'specific-term-slug');
 
 */
-function the_taxonomy_term($taxonomy)
+function the_taxonomy_term_name($taxonomy)
 {
     $terms = get_the_terms(get_the_ID(), $taxonomy);
     if ($terms && !is_wp_error($terms)) {
@@ -114,15 +117,24 @@ function the_taxonomy_term_url($taxonomy)
     }
 }
 
-function the_taxonomy_term_with_url($taxonomy) 
+function get_specific_taxonomy_term_name($taxonomy, $term_slug)
 {
-    $terms = get_the_terms( get_the_ID(), $taxonomy );
-    if ( $terms && ! is_wp_error( $terms ) ) {
-        foreach ( $terms as $term ) {
-            $term_link = get_term_link( $term, $taxonomy );
-        if ( ! is_wp_error( $term_link ) ) {
-                echo '<a href="' . esc_url( $term_link ) . '">' . $term->name . '</a><br>';
-            }
+    $term = get_term_by('slug', $term_slug, $taxonomy);
+
+    if ($term && !is_wp_error($term)) {
+        echo $term->name;
+    }
+}
+
+function get_specific_taxonomy_term_url($taxonomy, $term_slug)
+{
+    $term = get_term_by('slug', $term_slug, $taxonomy);
+
+    if ($term && !is_wp_error($term)) {
+        $term_link = get_term_link($term, $taxonomy);
+
+        if (!is_wp_error($term_link)) {
+            echo esc_url($term_link);
         }
     }
 }
