@@ -1,8 +1,14 @@
 <?php
 
-//################################################## 
-//Style & JavaScript
-function sample() {
+/* 
+
+################################################## 
+
+Style & JavaScript
+
+*/
+function sample()
+{
 
     //CSS
     wp_enqueue_style('style', get_stylesheet_uri() );
@@ -13,19 +19,25 @@ function sample() {
 
     //JavaScript
     wp_enqueue_script('app', get_template_directory_uri() . '/assets/js/app.js', array('jquery'), null, true );
-    
+
 }
 add_action('wp_enqueue_scripts', 'sample');
 
 
-//################################################## 
-//Defer & Async
+/* 
+
+################################################## 
+
+Defer & Async
+
+*/
 
 //Adds the defer attribute to the script tag
 add_filter('script_loader_tag', 'add_defer', 10, 2);
-function add_defer($tag, $handle) {
+function add_defer($tag, $handle)
+{
 
-  if($handle !== 'movabletype') {
+  if ($handle !== 'movabletype') {
     return $tag;
   }
   
@@ -35,9 +47,10 @@ function add_defer($tag, $handle) {
 
 //Adds the async attribute to the script tag
 add_filter('script_loader_tag', 'add_async', 10, 2);
-function add_async($tag, $handle) {
+function add_async($tag, $handle)
+{
 
-  if($handle !== 'movabletype') {
+  if ($handle !== 'movabletype') {
     return $tag;
   }
   
@@ -45,8 +58,14 @@ function add_async($tag, $handle) {
 
 }
 
-//################################################## 
-//Custom Title
+
+/* 
+
+################################################## 
+
+Custom Title
+
+*/
 function custom_title()
 {
 
@@ -67,8 +86,14 @@ function custom_title()
 
 }
 
-//################################################## 
-//Custom Meta
+
+/* 
+
+################################################## 
+
+Custom Meta
+
+*/
 function custom_meta()
 {
 

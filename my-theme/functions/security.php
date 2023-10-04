@@ -1,8 +1,14 @@
 <?php
 
-//################################################## 
-//Protect your site from malicious requests
-global $user_ID; if($user_ID) {
+/* 
+
+################################################## 
+
+Protect your site from malicious requests
+
+*/
+global $user_ID; if($user_ID)
+{
     if(!current_user_can('administrator')) {
         if (strlen($_SERVER['REQUEST_URI']) > 255 ||
             stripos($_SERVER['REQUEST_URI'], "eval(") ||
@@ -18,6 +24,11 @@ global $user_ID; if($user_ID) {
 }
 
 
-//################################################## 
-//Remove the WordPress Version Number
+/* 
+
+################################################## 
+
+Remove the WordPress Version Number
+
+*/
 remove_action('wp_head', 'wp_generator');
