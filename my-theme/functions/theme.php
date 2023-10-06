@@ -23,14 +23,13 @@ Remember to Attach to Post Type * in your CPT UI Plugin if you are using such pl
 */
 function taxonomy_archive_template($template = '')
 {
+    $taxonomies_array = ['profession', 'prefecture'];
 
-    if (is_tax('news_category')) $template = locate_template( 'custom-post-type/archive/news.php' );
-    if (is_tax('portfolio_category')) $template = locate_template( 'custom-post-type/archive/portfolio.php' );
-    
+    if (is_tax($taxonomies_array)) $template = locate_template('custom-post-type/archive/courses.php');
+
     return $template;
-   
 }
-add_filter( 'taxonomy_template', 'taxonomy_archive_template' );
+add_filter('taxonomy_template', 'taxonomy_archive_template');
 
 
 /* 
