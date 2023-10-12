@@ -39,29 +39,6 @@ add_filter('taxonomy_template', 'taxonomy_archive_template');
 
 ################################################## 
 
-Custom Loop for author.php
-
-*/
-function custom_author_posts_query($query)
-{
-    if (is_admin() || ! $query->is_main_query()) {
-        return;
-    }
-
-    if (is_author()) {
-        $author_id = get_queried_object_id();
-        $query->set('post_type', 'portfolio');
-        $query->set('author', $author_id);
-        $query->set('posts_per_page', 5);
-    }
-}
-add_action('pre_get_posts', 'custom_author_posts_query');
-
-
-/* 
-
-################################################## 
-
 Posts per page for archive.php and taxonomy.php
 
 */
