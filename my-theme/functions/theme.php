@@ -17,15 +17,18 @@ function return_button()
 
 ################################################## 
 
-Avoid loading the default archive.php
+Avoid taxonomies loading the default archive.php
 Remember to Attach to Post Type * in your CPT UI Plugin if you are using such plugin
 
 */
 function taxonomy_archive_template($template = '')
 {
-    $taxonomies_array = ['profession', 'prefecture'];
 
-    if (is_tax($taxonomies_array)) $template = locate_template('custom-post-type/archive/courses.php');
+    $courses_taxonomies = get_object_taxonomies('courses');
+    $jobs_taxonomies = get_object_taxonomies('jobs');
+
+    if (is_tax($courses_taxonomies)) $template = locate_template('custom-post-type/archive/courses.php');
+    if (is_tax($jobs_taxonomies)) $template = locate_template('custom-post-type/archive/jobs.php');
 
     return $template;
 }
