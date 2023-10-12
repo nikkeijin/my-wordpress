@@ -62,21 +62,27 @@ add_action('pre_get_posts', 'custom_author_posts_query');
 
 ################################################## 
 
-Pagination for default loop
+Posts per page for archive.php and taxonomy.php
 
 */
-function custom_posts_per_page( $query )
+function archive_posts_per_page($query)
 {
-    
-    if ( is_admin() ) {
-        return;
+    if (is_admin() || !$query->is_main_query()) return;
+
+    $post_types_to_modify = array(
+        'courses' => 12,
+        'jobs' => 12,
+    );
+
+    foreach ($post_types_to_modify as $post_type => $posts_per_page) {
+        if (is_post_type_archive($post_type) || is_tax(get_object_taxonomies($post_type))) {
+            $query->set('post_type', $post_type);
+            $query->set('posts_per_page', $posts_per_page);
+            return;
+        }
     }
-
-    if ( $query->is_post_type_archive('news') ) set_query_var('posts_per_page', 10);
-    if ( $query->is_post_type_archive('portfolio') ) set_query_var('posts_per_page', 5);
-
 }
-add_action( 'pre_get_posts', 'custom_posts_per_page' );
+add_action('pre_get_posts', 'archive_posts_per_page');
 
 
 /* 
