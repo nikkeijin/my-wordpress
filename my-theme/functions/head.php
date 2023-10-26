@@ -61,39 +61,40 @@ function add_async($tag, $handle)
 
 /* 
 
-################################################## 
+##################################################
 
-Custom Title
+Add the following code in your header.php <head> tag to use the functions below
+<?php custom_title(); ?>
+<?php custom_meta(); ?>
 
 */
+
+// Custom Title
 function custom_title()
 {
 
+    $company_name = 'Company Name';
+    $get_the_title = get_the_title();
+    $get_the_year = get_the_date('Y');
+
     if (is_page())
-        $title = "Static Page";
+        $title = "{$get_the_title}｜{$company_name}";
     if (is_front_page())
-        $title = 'Home Page';
+        $title = 'Company Name｜Home';
     if (is_post_type_archive('news'))
-        $title = 'News Archive';
+        $title = 'ニュース｜Company Name';
     if (is_singular('news'))
-        $title = "Singular News Page";
+    $title = "{$get_the_title}｜{$get_the_year}｜{$get_the_title}";
     if (is_404())
-        $title = "404 Page";
+        $title = "お探しのページが見つかりません｜Company Name";
     if (is_search())
-        $title = "Search Page";
+        $title = "サイト内検索｜東洋ワークグループ株式会社";
 
     echo "<title>$title</title>";
 
 }
 
-
-/* 
-
-################################################## 
-
-Custom Meta
-
-*/
+// Custom Meta
 function custom_meta()
 {
 
