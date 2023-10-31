@@ -88,7 +88,7 @@ function custom_title()
         $title = "{$get_the_title}｜{$company_name}";
     if (is_front_page())
         $title = 'Company Name｜Home';
-    if (is_post_type_archive('news'))
+    if (is_post_type_archive('news') || is_tax('news-category'))
         $title = 'ニュース｜Company Name';
     if (is_singular('news'))
     $title = "{$get_the_title}｜{$get_the_year}｜{$get_the_title}";
@@ -120,7 +120,7 @@ function custom_meta()
     }
 
     // News Archive
-    if (is_post_type_archive('news')) {
+    if (is_post_type_archive('news') || is_tax('news-category')) {
         $meta = [
             'description' => 'This is news archive page description...',
             'words' => 'News, Archive, Key, Word'
