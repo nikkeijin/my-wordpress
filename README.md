@@ -88,9 +88,8 @@ security.php:
 - Removes the WordPress version number from your site's headers to improve security.
 
 theme.php:
-- Defines functions for various theme-related tasks, including a "Go Back" button function for returning to the previous page or the home page.
 - Modifies the template for taxonomy archives for specific custom post types.
-- Sets the number of posts per page for archive.php and taxonomy.php templates for specific custom post types.
+- Sets the number of posts per page for `archive.php` and `taxonomy.php` templates for specific custom post types.
 - Customizes the appearance of pagination for posts.
 
 For more functions and additional code snippets, please visit [here](https://github.com/nikkeijin/wordpress/tree/main/codes).
