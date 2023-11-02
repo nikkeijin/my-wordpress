@@ -20,7 +20,8 @@
 
     <?php wp_head(); ?>
 
-    <title><?php if ( is_front_page() ) echo ('X Company | Home Page'); else wp_title(); ?></title>
+    <?php custom_title(); ?>
+    <?php custom_meta(); ?>
 
 </head>
 
