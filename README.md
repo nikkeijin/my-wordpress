@@ -75,7 +75,7 @@ Use this function to generate custom meta tags for better SEO.
 admin.php:
 - Removes the admin bar from the top of all pages.
 - Removes the default post type for situations where you don't need a blog.
-- removes comments entirely from your site, including menu items and support for comments in posts and pages.
+- Removes comments entirely from your site, including menu items and support for comments in posts and pages.
 - Hides the Custom Post Type UI from the admin bar.
 
 head.php:
