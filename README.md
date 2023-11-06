@@ -76,7 +76,7 @@ index.php:
 - If you plan to add or change custom post types, you can do so by editing the `archive.php` and `single.php` templates. These templates are used to display collections of custom post types (archive) and individual custom post type entries (single).
     
 archive.php:
-```
+```php
 <?php 
 
     // Remember to change permalink structure to /%postname%/ and remember to enable 'Has Archive' option for CPT to use the following method
@@ -87,7 +87,7 @@ archive.php:
 ```
     
 single.php:
-```
+```php
 <?php
 
     get_header();
@@ -113,7 +113,10 @@ single.php:
 
 - This file serves as the central hub for defining various functions and includes additional files, each with specific functions.
 
+functions.php:
 ```php
+<?php
+
     locate_template('functions/admin.php', true);
     locate_template('functions/security.php', true);
     locate_template('functions/head.php', true);
