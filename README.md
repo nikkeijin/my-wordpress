@@ -121,6 +121,7 @@ functions.php:
     locate_template('functions/security.php', true);
     locate_template('functions/head.php', true);
     locate_template('functions/theme.php', true);
+
 ```
 
 admin.php:
@@ -140,7 +141,45 @@ security.php:
 
 theme.php:
 - Modifies the template for `taxonomy archives` for specific custom post types.
+```php
+
+// Remember to Attach to Post Type * in your CPT UI Plugin if you are using such plugin
+function taxonomy_archive_template($template = '')
+{
+
+    $courses_taxonomies = get_object_taxonomies('courses');
+    $jobs_taxonomies = get_object_taxonomies('jobs');
+
+    if (is_tax($courses_taxonomies)) $template = locate_template('custom-post-type/news/archive.php');
+    if (is_tax($jobs_taxonomies)) $template = locate_template('custom-post-type/portfolio/archive.php');
+
+    return $template;
+}
+add_filter('taxonomy_template', 'taxonomy_archive_template');
+
+```
 - Sets the number of posts per page for `archive.php` and `taxonomy.php` templates for specific custom post types.
+```php
+function archive_posts_per_page($query)
+{
+    if (is_admin() || !$query->is_main_query()) return;
+
+    $post_types_to_modify = array(
+        'news' => 10,
+        'portfolio' => 12,
+    );
+
+    foreach ($post_types_to_modify as $post_type => $posts_per_page) {
+        if (is_post_type_archive($post_type) || is_tax(get_object_taxonomies($post_type))) {
+            $query->set('post_type', $post_type);
+            $query->set('posts_per_page', $posts_per_page);
+            return;
+        }
+    }
+}
+add_action('pre_get_posts', 'archive_posts_per_page');
+```
+
 - Customizes the appearance of pagination for posts.
 
 For more functions and additional code snippets, please visit [here](https://github.com/nikkeijin/wordpress/tree/main/codes).
