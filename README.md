@@ -75,14 +75,14 @@ front-page.php:
 ```php
 
 <?php
-// Args for querying posts of the 'news' post type
-$args = array(
-    'post_type'      => 'news',
-    'posts_per_page' => 10,
-);
-
-// Create a new query object
-$query = new WP_Query($args);
+  // Args for querying posts of the 'news' post type
+  $args = array(
+      'post_type'      => 'news',
+      'posts_per_page' => 10,
+  );
+  
+  // Create a new query object
+  $query = new WP_Query($args);
 ?>
 
 <!-- The Loop -->
@@ -91,8 +91,8 @@ $query = new WP_Query($args);
 <?php endwhile; endif; ?>
 
 <?php
-// Reset post data when you're done with the custom query
-wp_reset_postdata();
+  // Reset post data when you're done with the custom query
+  wp_reset_postdata();
 ?>
 
 ```
