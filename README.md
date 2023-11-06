@@ -329,8 +329,7 @@ For more functions and additional code snippets, please visit [here](https://git
 10. Extending Functionality with Plugins:
 
 - Enhance your theme's capabilities by incorporating plugins.
-
-- Explore a selection of recommended plugins [here](https://github.com/nikkeijin/wordpress/tree/main/plugins).
+Explore a selection of recommended plugins [here](https://github.com/nikkeijin/wordpress/tree/main/plugins).
 
 
 ##### Consider this base theme as your canvas to create something extraordinary. Embrace its adaptability, and let your imagination run wild to craft a website that truly reflects your project's individuality!
