@@ -76,19 +76,19 @@ admin.php:
 - Removes the admin bar from the top of all pages.
 - Removes the default post type for situations where you don't need a blog.
 - Removes comments entirely from your site, including menu items and support for comments in posts and pages.
-- Hides the Custom Post Type UI from the admin bar.
+- Hides the CPT UI & ACF from the admin bar.
 
 head.php:
 - Enqueues CSS and JavaScript files for your theme.
 - Adds the defer attribute to specified script tags for improved page loading performance.
-- Defines functions for customizing the title and meta tags for different types of pages, including the front page, news archive, singular news pages, and static pages.
+- Defines functions for customizing the title and meta tags for different types of pages, including the `front-page`, `archive`, `singular`, and `static-pages`.
 
 security.php:
 - Enhances site security by protecting it from malicious requests, including those with excessively long URIs and potentially harmful keywords.
 - Removes the WordPress version number from your site's headers to improve security.
 
 theme.php:
-- Modifies the template for taxonomy archives for specific custom post types.
+- Modifies the template for `taxonomy archives` for specific custom post types.
 - Sets the number of posts per page for `archive.php` and `taxonomy.php` templates for specific custom post types.
 - Customizes the appearance of pagination for posts.
 
