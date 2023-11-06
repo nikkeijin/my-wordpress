@@ -201,7 +201,7 @@ add_action('pre_get_posts', 'archive_posts_per_page');
 - Display taxonomy terms with links for the current post.
 ```php
 
-// Usage example: the_taxonomy_term('news');
+// Usage example: the_taxonomy_term('your_taxonomy');
 
 function the_taxonomy_term($taxonomy) 
 {
