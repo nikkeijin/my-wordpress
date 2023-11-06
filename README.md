@@ -76,6 +76,8 @@ front-page.php:
 
 // This code utilizes a custom WP_Query to retrieve and display up to 10 posts of the 'news' post type, distinct from the default loop used in WordPress template files such as archive.php.
 
+// This code serves as an example of how to retrieve posts in a static page rather than archive.php, using a custom WP_Query.
+
 <?php
 // Args for querying posts of the 'news' post type
 $args = array(
