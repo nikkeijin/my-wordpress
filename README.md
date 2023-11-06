@@ -46,11 +46,59 @@ Use this function to generate custom meta tags for better SEO.
 - The theme includes several sample static pages such as `"about"`, `"service"`, and `"contact"`. These pages serve as a starting point and can be adjusted according to your specific project needs. You can customize these templates by editing the index.php file and changing or creating the file names inside the 'pages' folder.
 
 - Important to mention `"front-page"` and `"404"` are part of the default WordPress structure and serve as the front page and error page templates, respectively. These templates can also be customized to align with your site's branding and content requirements.
+    
+index.php:
+```php
+<?php
+
+    get_header();
+
+        if (is_front_page()) locate_template('pages/front-page.php', true);
+        if (is_404()) locate_template('pages/404.php', true);
+
+        $is_page = [
+            "about" => "pages/about.php",
+            "service" => "pages/service.php",
+            "contact" => "pages/contact.php",
+        ];
+
+        foreach($is_page as $page_name => $dir ){
+          if(is_page($page_name)) locate_template($dir, true);
+        }
+
+    get_footer();
+
+?>
+```
 
 6. Custom Post Types:
 
 - If you plan to add or change custom post types, you can do so by editing the `archive.php` and `single.php` templates. These templates are used to display collections of custom post types (archive) and individual custom post type entries (single).
+    
+archive.php:
+```
+<?php 
 
+    // Remember to change permalink structure to /%postname%/ and remember to enable 'Has Archive' option for CPT to use the following method
+    if (is_post_type_archive('news')) locate_template('custom-post-type/news/archive.php', true);
+    if (is_post_type_archive('portfolio')) locate_template('custom-post-type/portfolio/archive.php', true);
+
+?>
+```
+    
+single.php:
+```
+<?php
+
+    get_header();
+
+        if (is_singular('news')) locate_template('custom-post-type/news/single.php', true);
+        if (is_singular('portfolio')) locate_template('custom-post-type/portfolio/single.php', true);
+
+    get_footer();
+
+?>
+```
 
 7. Search Functionality:
 
