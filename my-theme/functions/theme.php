@@ -24,13 +24,14 @@ Remember to Attach to Post Type * in your CPT UI Plugin if you are using such pl
 function taxonomy_archive_template($template = '')
 {
 
-    $courses_taxonomies = get_object_taxonomies('courses');
-    $jobs_taxonomies = get_object_taxonomies('jobs');
+    $news_taxonomies = get_object_taxonomies('news');
+    $portfolio_taxonomies = get_object_taxonomies('portfolio');
 
     if (is_tax($courses_taxonomies)) $template = locate_template('custom-post-type/news/archive.php');
     if (is_tax($jobs_taxonomies)) $template = locate_template('custom-post-type/portfolio/archive.php');
 
     return $template;
+
 }
 add_filter('taxonomy_template', 'taxonomy_archive_template');
 
@@ -47,8 +48,8 @@ function archive_posts_per_page($query)
     if (is_admin() || !$query->is_main_query()) return;
 
     $post_types_to_modify = array(
-        'courses' => 12,
-        'jobs' => 12,
+        'news' => 10,
+        'portfolio' => 12,
     );
 
     foreach ($post_types_to_modify as $post_type => $posts_per_page) {
