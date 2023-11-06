@@ -75,6 +75,7 @@ front-page.php:
 ```php
 
 <?php
+
   // Args for querying posts of the 'news' post type
   $args = array(
       'post_type'      => 'news',
@@ -93,6 +94,7 @@ front-page.php:
 <?php
   // Reset post data when you're done with the custom query
   wp_reset_postdata();
+
 ?>
 
 ```
