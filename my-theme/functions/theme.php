@@ -79,12 +79,35 @@ function custom_posts_pagination()
     );
 }
 
-
 /* 
 
 ################################################## 
 
-Display taxonomy term
+Taxonomy term with the link to redirect to the corresponding term archive page
+Usage example: the_taxonomy_term('portfolio');
+
+You may also customize the taxonomy term by page type adding a if with to have multiple ways of how to display the design of:
+if (is_post_type_archive('job'))
+if (is_tax('profession'))
+if (is_singular('job'))
+
+*/
+function the_taxonomy_term($taxonomy) 
+{
+    $terms = get_the_terms(get_the_ID(), $taxonomy);
+    if ($terms && !is_wp_error($terms)) {
+        foreach ($terms as $term) {
+            $term_link = get_term_link($term, $taxonomy);
+            if (!is_wp_error( $term_link )) {
+                echo '<a href="' . esc_url( $term_link ) . '">' . $term->name . '</a>';
+            }
+        }
+    }
+}
+
+/* 
+
+################################################## 
 
 Usage example: 
 the_taxonomy_term_name('your_taxonomy');
