@@ -194,13 +194,14 @@ theme.php:
 function taxonomy_archive_template($template = '')
 {
 
-    $courses_taxonomies = get_object_taxonomies('courses');
-    $jobs_taxonomies = get_object_taxonomies('jobs');
+    $courses_taxonomies = get_object_taxonomies('news');
+    $jobs_taxonomies = get_object_taxonomies('portfolio');
 
     if (is_tax($courses_taxonomies)) $template = locate_template('custom-post-type/news/archive.php');
     if (is_tax($jobs_taxonomies)) $template = locate_template('custom-post-type/portfolio/archive.php');
 
     return $template;
+
 }
 add_filter('taxonomy_template', 'taxonomy_archive_template');
 
