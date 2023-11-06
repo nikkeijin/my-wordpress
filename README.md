@@ -84,6 +84,7 @@ front-page.php:
   
   // Create a new query object
   $query = new WP_Query($args);
+
 ?>
 
 <!-- The Loop -->
@@ -92,6 +93,7 @@ front-page.php:
 <?php endwhile; endif; ?>
 
 <?php
+
   // Reset post data when you're done with the custom query
   wp_reset_postdata();
 
@@ -194,8 +196,8 @@ theme.php:
 function taxonomy_archive_template($template = '')
 {
 
-    $courses_taxonomies = get_object_taxonomies('news');
-    $jobs_taxonomies = get_object_taxonomies('portfolio');
+    $news_taxonomies = get_object_taxonomies('news');
+    $portfolio_taxonomies = get_object_taxonomies('portfolio');
 
     if (is_tax($courses_taxonomies)) $template = locate_template('custom-post-type/news/archive.php');
     if (is_tax($jobs_taxonomies)) $template = locate_template('custom-post-type/portfolio/archive.php');
