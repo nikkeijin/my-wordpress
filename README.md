@@ -71,6 +71,34 @@ index.php:
 ?>
 ```
 
+front-page.php:
+```php
+
+// This code utilizes a custom WP_Query to retrieve and display up to 10 posts of the 'news' post type, distinct from the default loop used in WordPress template files such as archive.php.
+
+<?php
+// Args for querying posts of the 'news' post type
+$args = array(
+    'post_type'      => 'news',
+    'posts_per_page' => 10,
+);
+
+// Create a new query object
+$query = new WP_Query($args);
+?>
+
+<!-- The Loop -->
+<?php if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post(); ?>
+    <?php the_title(); ?>
+<?php endwhile; endif; ?>
+
+<?php
+// Reset post data when you're done with the custom query
+wp_reset_postdata();
+?>
+
+```
+
 6. Custom Post Types:
 
 - If you plan to add or change custom post types, you can do so by editing the `archive.php` and `single.php` templates. These templates are used to display collections of custom post types (archive) and individual custom post type entries (single).
