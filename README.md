@@ -80,6 +80,7 @@ archive.php:
 <?php 
 
     // Remember to change permalink structure to /%postname%/ and remember to enable 'Has Archive' option for CPT to use the following method
+
     if (is_post_type_archive('news')) locate_template('custom-post-type/news/archive.php', true);
     if (is_post_type_archive('portfolio')) locate_template('custom-post-type/portfolio/archive.php', true);
 
@@ -108,6 +109,20 @@ single.php:
 8. Password Protection:
 
 - You can protect specific pages with a password using HTTP Basic Authentication, as implemented in the code found in header.php. To secure certain pages, update the array with the appropriate `is_page('page-slug')`, `username`, and `password` for access. This method ensures that only authorized users with the correct credentials can view the protected content.
+
+header.php:
+```php
+<?php
+
+    if(is_page('secret')):
+        $userArray = array(
+            "username" => "password"
+        );
+        basic_auth($userArray);
+    endif;
+
+?>
+```
 
 9. Understanding the Functions Defined in functions.php:
 
@@ -144,6 +159,7 @@ theme.php:
 ```php
 
 // Remember to Attach to Post Type * in your CPT UI Plugin if you are using such plugin
+
 function taxonomy_archive_template($template = '')
 {
 
@@ -160,6 +176,7 @@ add_filter('taxonomy_template', 'taxonomy_archive_template');
 ```
 - Sets the number of posts per page for `archive.php` and `taxonomy.php` templates for specific custom post types.
 ```php
+
 function archive_posts_per_page($query)
 {
     if (is_admin() || !$query->is_main_query()) return;
@@ -178,9 +195,105 @@ function archive_posts_per_page($query)
     }
 }
 add_action('pre_get_posts', 'archive_posts_per_page');
+
 ```
 
-- Customizes the appearance of pagination for posts.
+- Display taxonomy terms with links for the current post.
+```php
+
+// Usage example: the_taxonomy_term('news');
+
+function the_taxonomy_term($taxonomy) 
+{
+    $terms = get_the_terms(get_the_ID(), $taxonomy);
+    if ($terms && !is_wp_error($terms)) {
+        foreach ($terms as $term) {
+            $term_link = get_term_link($term, $taxonomy);
+            if (!is_wp_error( $term_link )) {
+                echo '<a href="' . esc_url( $term_link ) . '">' . $term->name . '</a>';
+            }
+        }
+    }
+}
+
+```
+
+- Display the NAME of a specific taxonomy term for the current post.
+```php
+
+// Usage example: the_taxonomy_term_name('your_taxonomy');
+
+function the_taxonomy_term_name($taxonomy)
+{
+    $terms = get_the_terms(get_the_ID(), $taxonomy);
+    if ($terms && !is_wp_error($terms)) {
+        foreach ($terms as $term) {
+            $term_link = get_term_link($term, $taxonomy);
+            if (!is_wp_error($term_link)) {
+                echo $term->name;
+            }
+        }
+    }
+}
+
+```
+
+- Display the URL of a specific taxonomy term for the current post.
+```php
+
+// Usage example: the_taxonomy_term_url('your_taxonomy');
+
+function the_taxonomy_term_url($taxonomy)
+{
+    $terms = get_the_terms(get_the_ID(), $taxonomy);
+    if ($terms && !is_wp_error($terms)) {
+        foreach ($terms as $term) {
+            $term_link = get_term_link($term, $taxonomy);
+            if (!is_wp_error($term_link)) {
+                echo esc_url($term_link);
+            }
+        }
+    }
+}
+
+```
+
+- Get and return the NAME of a specific taxonomy term by its slug.
+```php
+
+// Usage example: get_specific_taxonomy_term_name('your_taxonomy', 'specific-term-slug');
+
+function get_specific_taxonomy_term_name($taxonomy, $term_slug)
+
+{
+    $term = get_term_by('slug', $term_slug, $taxonomy);
+
+    if ($term && !is_wp_error($term)) {
+        echo $term->name;
+    }
+}
+
+```
+
+- Get and return the URL of a specific taxonomy term by its slug.
+```php
+
+// Usage example: get_specific_taxonomy_term_url('your_taxonomy', 'specific-term-slug');
+
+function get_specific_taxonomy_term_url($taxonomy, $term_slug)
+{
+    $term = get_term_by('slug', $term_slug, $taxonomy);
+
+    if ($term && !is_wp_error($term)) {
+        $term_link = get_term_link($term, $taxonomy);
+
+        if (!is_wp_error($term_link)) {
+            echo esc_url($term_link);
+        }
+    }
+}
+
+```
 
 For more functions and additional code snippets, please visit [here](https://github.com/nikkeijin/wordpress/tree/main/codes).
 
