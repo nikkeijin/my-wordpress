@@ -23,7 +23,7 @@
       <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
       <hr />
   <?php endwhile; ?>
-  <?php the_posts_pagination(); ?>
   <?php wp_reset_postdata(); ?>
+  <?php the_posts_pagination(); ?>
 
 <?php get_footer(); ?>
