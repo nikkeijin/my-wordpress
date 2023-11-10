@@ -88,7 +88,7 @@ function custom_title()
     if (is_404())
         $title = "お探しのページが見つかりません｜Company Name";
     if (is_search())
-        $title = "サイト内検索｜東洋ワークグループ株式会社";
+        $title = "Description｜Company";
 
     echo "<title>$title</title>";
 
