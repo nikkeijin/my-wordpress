@@ -4,7 +4,7 @@
 
 ################################################## 
 
-Redirect to the home page 
+Redirect to the 404 page 
 
 */
 function redirect_author_archive_to_home()
