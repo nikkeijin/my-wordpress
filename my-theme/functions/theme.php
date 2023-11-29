@@ -1,5 +1,19 @@
 <?php
 
+/*
+
+################################################## 
+
+Redirect to the home page 
+
+*/
+function redirect_author_archive_to_home()
+{
+    if (is_author()) wp_redirect(esc_url(home_url('404')));
+}
+add_action('template_redirect', 'redirect_author_archive_to_home');
+
+
 /* 
 
 ################################################## 
