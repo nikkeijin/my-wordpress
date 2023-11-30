@@ -38,11 +38,13 @@ Remember to Attach to Post Type * in your CPT UI Plugin if you are using such pl
 function taxonomy_archive_template($template = '')
 {
 
+    $is_post_type = get_post_type();
+    
     $news_taxonomies = get_object_taxonomies('news');
     $portfolio_taxonomies = get_object_taxonomies('portfolio');
 
-    if (is_tax($courses_taxonomies)) $template = locate_template('custom-post-type/news/archive.php');
-    if (is_tax($jobs_taxonomies)) $template = locate_template('custom-post-type/portfolio/archive.php');
+    if ($is_post_type === 'news' && is_tax($courses_taxonomies)) $template = locate_template('custom-post-type/news/archive.php');
+    if ($is_post_type === 'portfolio' && is_tax($jobs_taxonomies)) $template = locate_template('custom-post-type/portfolio/archive.php');
 
     return $template;
 
