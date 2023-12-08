@@ -1,11 +1,9 @@
 <!-- Add password to a specific page -->
 <?php
-    if(is_page('secret')):
-        $userArray = array(
-            "username" => "password"
-        );
+    if (is_page('secret')) {
+        $userArray = ["username" => "password"];
         basic_auth($userArray);
-    endif;
+    }
 ?>
 
 <!DOCTYPE html>
