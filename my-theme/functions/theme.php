@@ -14,17 +14,18 @@ function redirect_author_archive_to_home()
 add_action('template_redirect', 'redirect_author_archive_to_home');
 
 
-/* 
+/*
 
 ################################################## 
 
-Return to home page if came from outside and return to previous page if came from WP
+Excerpt length
 
 */
-function return_button()
+function custom_excerpt_length($length)
 {
-    echo '<a href="' . (wp_get_referer() ? wp_get_referer() : esc_url(home_url())) . '">GO BACK</a>';
+	return 20;
 }
+add_filter('excerpt_length', 'custom_excerpt_length');
 
 
 /* 
@@ -96,6 +97,7 @@ function custom_posts_pagination()
     );
 }
 
+
 /* 
 
 ################################################## 
@@ -121,6 +123,7 @@ function the_taxonomy_term($taxonomy)
         }
     }
 }
+
 
 /* 
 
